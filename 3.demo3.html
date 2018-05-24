@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #main{
+            width:600px;
+            height:400px;
+            margin:50px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="main"></div>
+<script src="echarts.common.min.js"></script>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    let container = document.getElementById("main");
+    let myEchart = echarts.init(container);
+    let newdata;
+    $.ajax({
+        url:'/getList',
+        dataType:'json',
+        async:false,
+        success:function (data) {
+            newdata = data;
+        }
+    })
+    let option = {
+        title: {
+            text: '堆叠区域图'
+        },
+        tooltip : {
+
+
+        },
+        legend: {
+            left:'20%',
+            data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+        },
+
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : ['周一','周二','周三','周四','周五','周六','周日']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : newdata
+    }
+    myEchart.setOption(option);
+
+
+</script>
+</body>
+</html>

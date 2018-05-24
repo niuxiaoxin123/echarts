@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--给当前的echart的图表提供一个盒子-->
+<div id="main" style="width:600px;height:400px;"></div>
+<script src="echarts.min.js"></script>
+<script>
+    // line  bar Pie
+    let main = document.getElementById("main");
+    let myEcharts = echarts.init(main);
+    let option = {
+        title:{
+            text:"Echarts入门"
+        },
+        legend:{
+             data:["销量","价格"]
+        },
+        xAxis:{
+            data:["衬衫","短袖","领带"]
+        },
+        yAxis: {},
+        series:[{
+            name:"销量",
+            type:"bar",
+            data:[12,3,5]
+            },
+            {
+                name:"价格",
+                type:"bar",
+                data:[12,3,5]
+            }]
+    }
+    myEcharts.setOption(option);
+</script>
+</body>
+</html>
